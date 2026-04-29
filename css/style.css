@@ -1375,6 +1375,131 @@ h2 {
   margin-right: 6px;
 }
 
+.video-gallery-section {
+  position: relative;
+  background: rgba(var(--primary-rgb), 0.04);
+}
+
+.video-tabs-wrap {
+  padding: 0;
+  background: transparent;
+}
+
+.video-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.video-tabs .nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 18px;
+  border: 1px solid rgba(var(--primary-rgb), 0.18);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: var(--soft);
+  font: 800 15px/1 var(--sans);
+}
+
+.video-tabs .nav-link i {
+  color: var(--primary);
+}
+
+.video-tabs .nav-link.active {
+  color: var(--white);
+  border-color: var(--primary);
+  background: var(--primary);
+}
+
+.video-tabs .nav-link.active i {
+  color: var(--white);
+}
+
+.video-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 30px 16px;
+}
+
+.youtube-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 24px;
+  min-width: 0;
+  color: var(--ink);
+  font-family: var(--sans);
+}
+
+.youtube-thumb {
+  position: relative;
+  display: block;
+  grid-column: 1 / -1;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  background: var(--primary-dark);
+}
+
+.youtube-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.youtube-card:hover .youtube-thumb img {
+  transform: scale(1.04);
+  filter: saturate(1.08);
+}
+
+.youtube-duration {
+  position: absolute;
+  right: 8px;
+  bottom: 7px;
+  padding: 3px 7px;
+  border-radius: 4px;
+  color: var(--white);
+  background: rgba(0, 0, 0, 0.82);
+  font: 800 12px/1 var(--sans);
+}
+
+.youtube-title {
+  display: -webkit-box;
+  grid-column: 1;
+  overflow: hidden;
+  margin-top: 12px;
+  color: #111827;
+  font: 800 16px/1.35 var(--sans);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.youtube-meta {
+  display: block;
+  grid-column: 1;
+  margin-top: 6px;
+  color: #6b7280;
+  font: 500 14px/1.3 var(--sans);
+}
+
+.youtube-card > i {
+  grid-column: 2;
+  grid-row: 2;
+  justify-self: end;
+  margin-top: 12px;
+  color: #111827;
+  font-size: 20px;
+}
+
+.youtube-card:hover .youtube-title {
+  color: var(--primary);
+}
+
 .events-section {
   background: transparent;
 }
@@ -1497,6 +1622,455 @@ h2 {
 
 .admission-phone i {
   color: var(--primary);
+}
+
+.faq-section {
+  padding-top: 95px;
+}
+
+.faq-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.42fr) minmax(0, 0.58fr);
+  gap: 34px;
+  align-items: start;
+}
+
+.faq-help {
+  position: sticky;
+  top: 96px;
+  padding: 42px 36px;
+  border-radius: 8px;
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(var(--primary-dark-rgb), 0.94), rgba(var(--primary-rgb), 0.9)),
+    url("../assets/pillars-bg.png") center / cover;
+}
+
+.faq-help > i {
+  width: 76px;
+  height: 76px;
+  display: inline-grid;
+  place-items: center;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  color: var(--primary);
+  background: var(--white);
+  font-size: 34px;
+}
+
+.faq-help h3 {
+  color: var(--white);
+  font-size: 34px;
+  margin-bottom: 16px;
+}
+
+.faq-help p {
+  color: rgba(255, 255, 255, 0.84);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.75;
+  margin-bottom: 26px;
+}
+
+.faq-accordion {
+  display: grid;
+  gap: 16px;
+}
+
+.faq-accordion .accordion-item {
+  overflow: hidden;
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 14px 30px rgba(24, 27, 32, 0.07);
+}
+
+.faq-accordion .accordion-button {
+  color: var(--ink);
+  background: var(--white);
+  box-shadow: none;
+  font: 800 19px/1.35 var(--sans);
+  padding: 22px 26px;
+}
+
+.faq-accordion .accordion-button:not(.collapsed) {
+  color: var(--primary-dark);
+  background: var(--soft);
+}
+
+.faq-accordion .accordion-button:focus {
+  border-color: rgba(var(--primary-rgb), 0.35);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.12);
+}
+
+.faq-accordion .accordion-body {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.75;
+  padding: 0 26px 24px;
+}
+
+.map-section {
+  position: relative;
+  padding: 0 0 110px;
+}
+
+.map-card {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.38fr) minmax(0, 0.62fr);
+  overflow: hidden;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.map-info {
+  padding: 46px 42px;
+  color: var(--white);
+  background: var(--primary-dark);
+}
+
+.map-info .eyebrow,
+.map-info h2 {
+  color: var(--white);
+}
+
+.map-info p {
+  color: rgba(255, 255, 255, 0.84);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+.map-contact-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.map-contact-list span {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  font: 700 16px/1.4 var(--sans);
+}
+
+.map-contact-list i {
+  color: #b8e3c9;
+  font-size: 20px;
+}
+
+.google-map {
+  min-height: 430px;
+}
+
+.google-map iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 430px;
+  border: 0;
+}
+
+.campus-hero {
+  position: relative;
+  min-height: 520px;
+  display: grid;
+  align-items: center;
+  overflow: hidden;
+  color: var(--white);
+  background: var(--primary-dark);
+}
+
+.campus-hero-bg {
+  position: absolute;
+  inset: 0;
+  background: center / cover no-repeat;
+  transform: scale(1.03);
+}
+
+.campus-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(var(--primary-dark-rgb), 0.88), rgba(var(--primary-dark-rgb), 0.55), rgba(var(--primary-dark-rgb), 0.28)),
+    linear-gradient(rgba(var(--primary-rgb), 0.18), rgba(var(--primary-dark-rgb), 0.35));
+}
+
+.campus-hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.campus-hero .eyebrow,
+.campus-contact-card .eyebrow {
+  color: #b8e3c9;
+}
+
+.campus-hero h1 {
+  max-width: 780px;
+  color: var(--white);
+  font-size: clamp(48px, 7vw, 82px);
+  font-weight: 700;
+  line-height: 0.98;
+  margin: 10px 0 24px;
+}
+
+.campus-hero p {
+  max-width: 680px;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: var(--sans);
+  font-size: 20px;
+  line-height: 1.75;
+}
+
+.campus-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.campus-outline-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 24px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 4px;
+  color: var(--white);
+  font: 800 15px/1 var(--sans);
+}
+
+.campus-outline-link.dark {
+  border-color: rgba(var(--primary-rgb), 0.24);
+  color: var(--primary-dark);
+  gap: 8px;
+}
+
+.campus-summary {
+  position: relative;
+  z-index: 2;
+  margin-top: -54px;
+}
+
+.campus-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.campus-stats article {
+  min-height: 112px;
+  padding: 26px;
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+
+.campus-stats strong {
+  display: block;
+  color: var(--primary);
+  font: 800 38px/1 var(--sans);
+  margin-bottom: 8px;
+}
+
+.campus-stats span {
+  color: var(--muted);
+  font: 700 16px/1.25 var(--sans);
+}
+
+.campus-detail-section p,
+.campus-contact-card p {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1.85;
+}
+
+.campus-activity-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 30px;
+}
+
+.campus-activity-list article {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  color: #52655c;
+  font: 700 15px/1.45 var(--sans);
+}
+
+.campus-activity-list i {
+  color: var(--primary);
+  font-size: 20px;
+}
+
+.campus-info-panel {
+  position: sticky;
+  top: 96px;
+  padding: 34px;
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+}
+
+.campus-info-panel h3 {
+  font-size: 30px;
+  margin-bottom: 22px;
+}
+
+.campus-info-panel div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 16px 0;
+  border-bottom: 1px dashed var(--line);
+  font-family: var(--sans);
+}
+
+.campus-info-panel div:last-child {
+  border-bottom: 0;
+}
+
+.campus-info-panel span {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+.campus-info-panel strong {
+  color: var(--primary-dark);
+  text-align: right;
+}
+
+.campus-inquiry-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid var(--line);
+}
+
+.campus-inquiry-form h3 {
+  margin-bottom: 8px;
+  font-size: 28px;
+}
+
+.campus-inquiry-form input,
+.campus-inquiry-form select,
+.campus-inquiry-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  outline: 0;
+  color: var(--ink);
+  background: var(--white);
+  font: 600 15px/1.4 var(--sans);
+  padding: 14px 16px;
+}
+
+.campus-inquiry-form textarea {
+  resize: vertical;
+}
+
+.campus-inquiry-form input:focus,
+.campus-inquiry-form select:focus,
+.campus-inquiry-form textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(var(--primary-rgb), 0.12);
+}
+
+.campus-inquiry-form button {
+  border: 0;
+  border-radius: 6px;
+  color: var(--white);
+  background: var(--primary);
+  font: 800 16px/1 var(--sans);
+  padding: 16px 20px;
+}
+
+.campus-facilities-section {
+  background: rgba(var(--primary-rgb), 0.04);
+}
+
+.campus-feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.campus-feature-grid article {
+  min-height: 250px;
+  padding: 36px 30px;
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+  border-radius: 8px;
+  background: var(--white);
+  box-shadow: 0 16px 35px rgba(24, 27, 32, 0.08);
+}
+
+.campus-feature-grid i {
+  width: 68px;
+  height: 68px;
+  display: inline-grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--primary);
+  font-size: 30px;
+}
+
+.campus-feature-grid h3 {
+  color: var(--ink);
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.campus-feature-grid p {
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.campus-contact-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 40px;
+  padding: 52px;
+  border-radius: 8px;
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(var(--primary-dark-rgb), 0.96), rgba(var(--primary-rgb), 0.88)),
+    url("../assets/pillars-bg.png") center / cover;
+}
+
+.campus-contact-card h2 {
+  color: var(--white);
+}
+
+.campus-contact-card p {
+  color: rgba(255, 255, 255, 0.84);
+  margin: 0;
+}
+
+.campus-contact-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
 }
 
 .footer {
@@ -1784,8 +2358,30 @@ h2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .video-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .admission-flow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .faq-layout,
+  .map-card {
+    grid-template-columns: 1fr;
+  }
+
+  .faq-help {
+    position: static;
+  }
+
+  .campus-feature-grid,
+  .campus-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .campus-contact-card {
+    grid-template-columns: 1fr;
   }
 
   .footer-panel {
@@ -1976,6 +2572,19 @@ h2 {
     padding: 30px 24px 32px;
   }
 
+  .video-tabs {
+    justify-content: flex-start;
+  }
+
+  .video-tabs .nav-link {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .video-card-grid {
+    grid-template-columns: 1fr;
+  }
+
   .admission-flow {
     grid-template-columns: 1fr;
   }
@@ -1986,6 +2595,47 @@ h2 {
 
   .admission-cta {
     flex-direction: column;
+  }
+
+  .faq-help,
+  .map-info {
+    padding: 34px 24px;
+  }
+
+  .faq-accordion .accordion-button {
+    font-size: 17px;
+    padding: 20px 22px;
+  }
+
+  .faq-accordion .accordion-body {
+    padding-inline: 22px;
+  }
+
+  .map-section {
+    padding-bottom: 80px;
+  }
+
+  .campus-hero {
+    min-height: 460px;
+  }
+
+  .campus-stats,
+  .campus-activity-list,
+  .campus-feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campus-info-panel {
+    position: static;
+    padding: 28px 22px;
+  }
+
+  .campus-contact-card {
+    padding: 34px 24px;
+  }
+
+  .campus-contact-actions {
+    align-items: stretch;
   }
 
   .pillars {
