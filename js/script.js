@@ -4,6 +4,7 @@ const mainNav = document.querySelector(".mainnav");
 const audioBar = document.querySelector("#audioBar");
 const audioCurrent = document.querySelector("#audioCurrent");
 const audioButtons = document.querySelectorAll(".audio-controls button");
+const preloader = document.querySelector("#preloader");
 const navSpacer = document.createElement("div");
 
 let audioPercent = 72;
@@ -12,6 +13,23 @@ let navStart = 0;
 
 navSpacer.className = "nav-spacer";
 mainNav.after(navSpacer);
+
+if (preloader) {
+  document.body.classList.add("preloader-active");
+}
+
+function hidePreloader() {
+  if (!preloader || preloader.classList.contains("is-hidden")) {
+    return;
+  }
+
+  preloader.classList.add("is-hidden");
+  document.body.classList.remove("preloader-active");
+
+  window.setTimeout(() => {
+    preloader.setAttribute("hidden", "");
+  }, 500);
+}
 
 function measureNav() {
   navStart = siteHeader ? siteHeader.offsetHeight : 0;
@@ -98,6 +116,14 @@ window.addEventListener("resize", () => {
   measureNav();
   updateStickyNav();
 });
+
+if (document.readyState === "complete") {
+  window.setTimeout(hidePreloader, 0);
+} else {
+  window.addEventListener("load", hidePreloader);
+}
+
+window.setTimeout(hidePreloader, 3500);
 
 // Initially hide the button
 backTop.style.display = "none";
