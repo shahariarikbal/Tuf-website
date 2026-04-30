@@ -3180,6 +3180,24 @@ h2 {
     url("../assets/s3.jpeg") center / cover;
 }
 
+.notice-page-cover .results-cover-bg {
+  background:
+    linear-gradient(90deg, rgba(0, 35, 22, 0.94), rgba(0, 79, 45, 0.7), rgba(0, 35, 22, 0.4)),
+    url("../assets/s1.jpeg") center / cover;
+}
+
+.career-page-cover .results-cover-bg {
+  background:
+    linear-gradient(90deg, rgba(0, 35, 22, 0.94), rgba(0, 79, 45, 0.7), rgba(0, 35, 22, 0.4)),
+    url("../assets/img3.jpeg") center / cover;
+}
+
+.contact-page-cover .results-cover-bg {
+  background:
+    linear-gradient(90deg, rgba(0, 35, 22, 0.94), rgba(0, 79, 45, 0.72), rgba(0, 35, 22, 0.42)),
+    url("../assets/img4.jpeg") center / cover;
+}
+
 .results-cover .container {
   position: relative;
   z-index: 1;
@@ -3489,6 +3507,197 @@ h2 {
 .merit-profile strong {
   color: var(--primary);
   font: 800 34px/1 var(--sans);
+}
+
+.notice-page-section,
+.contact-page-section {
+  position: relative;
+}
+
+.notice-feature-grid,
+.career-grid,
+.contact-method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.notice-feature-card,
+.career-grid article,
+.contact-method-grid article {
+  min-height: 285px;
+  padding: 34px 30px;
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 38px rgba(9, 47, 34, 0.09);
+}
+
+.notice-feature-card.featured {
+  color: var(--white);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+}
+
+.notice-feature-card i,
+.career-grid i,
+.contact-method-grid i {
+  width: 64px;
+  height: 64px;
+  display: inline-grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--primary);
+  font-size: 28px;
+}
+
+.notice-feature-card.featured i {
+  color: var(--primary);
+  background: var(--white);
+}
+
+.notice-feature-card span,
+.career-grid span {
+  display: inline-flex;
+  min-height: 28px;
+  align-items: center;
+  margin-bottom: 14px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: rgba(var(--primary-rgb), 0.1);
+  font: 800 12px/1 var(--sans);
+  text-transform: uppercase;
+}
+
+.notice-feature-card.featured span {
+  color: var(--white);
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.notice-feature-card h3,
+.career-grid h3,
+.contact-method-grid h3 {
+  margin: 0 0 12px;
+  color: var(--primary-dark);
+  font-size: 29px;
+  line-height: 1.14;
+}
+
+.notice-feature-card.featured h3 {
+  color: var(--white);
+}
+
+.notice-feature-card p,
+.career-grid p,
+.contact-method-grid p,
+.contact-info-panel p {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.notice-feature-card.featured p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.notice-feature-card a,
+.career-grid a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  color: inherit;
+  font: 800 14px/1.4 var(--sans);
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.contact-info-panel,
+.contact-form {
+  border: 1px solid rgba(var(--primary-rgb), 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 38px rgba(9, 47, 34, 0.09);
+}
+
+.contact-info-panel {
+  padding: 40px 34px;
+}
+
+.contact-info-panel h2 {
+  margin: 8px 0 14px;
+  color: var(--primary-dark);
+  font-size: 44px;
+}
+
+.contact-info-panel ul {
+  display: grid;
+  gap: 14px;
+  padding: 26px 0 0;
+  margin: 26px 0 0;
+  border-top: 1px dashed rgba(var(--primary-rgb), 0.22);
+  list-style: none;
+  color: var(--ink);
+  font: 700 15px/1.5 var(--sans);
+}
+
+.contact-info-panel li {
+  display: flex;
+  gap: 12px;
+}
+
+.contact-info-panel i {
+  color: var(--primary);
+}
+
+.contact-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding: 34px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--primary-dark);
+  font: 800 14px/1.3 var(--sans);
+}
+
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  outline: 0;
+  color: var(--ink);
+  background: #fbfffc;
+  font: 600 15px/1.5 var(--sans);
+  padding: 14px 16px;
+}
+
+.contact-form textarea {
+  resize: vertical;
+}
+
+.contact-form button {
+  grid-column: 1 / -1;
+  min-height: 52px;
+  border: 0;
+  border-radius: 6px;
+  color: var(--white);
+  background: var(--primary);
+  font: 800 15px/1 var(--sans);
 }
 
 .campus-facilities-section {
@@ -3882,7 +4091,8 @@ h2 {
   .research-layout,
   .research-callout,
   .results-cover-grid,
-  .results-card-grid {
+  .results-card-grid,
+  .contact-layout {
     grid-template-columns: 1fr;
   }
 
@@ -3893,6 +4103,12 @@ h2 {
 
   .result-search-form {
     grid-template-columns: 1fr;
+  }
+
+  .notice-feature-grid,
+  .career-grid,
+  .contact-method-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .admission-detail-grid {
@@ -4260,7 +4476,12 @@ h2 {
 
   .results-panel,
   .result-card,
-  .merit-profile {
+  .merit-profile,
+  .notice-feature-card,
+  .career-grid article,
+  .contact-method-grid article,
+  .contact-info-panel,
+  .contact-form {
     padding: 28px 22px;
   }
 
@@ -4285,6 +4506,17 @@ h2 {
 
   .merit-card-grid {
     grid-template-columns: 1fr;
+  }
+
+  .notice-feature-grid,
+  .career-grid,
+  .contact-method-grid,
+  .contact-form {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info-panel h2 {
+    font-size: 34px;
   }
 
   .campus-info-panel {
