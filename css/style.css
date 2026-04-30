@@ -1315,8 +1315,8 @@ h2 {
   padding: 105px 0 120px;
   color: var(--white);
   background:
-    linear-gradient(rgba(3, 25, 17, 0.8), rgba(3, 25, 17, 0.8)),
-    url("../assets/pillars-bg.png") center / cover fixed;
+    linear-gradient(135deg, rgba(var(--primary-dark-rgb), 0.9), rgba(var(--primary-rgb), 0.72)),
+    url("../assets/s1.jpeg") center 42% / cover fixed;
 }
 
 .pillars-section h2 {
@@ -2542,6 +2542,38 @@ h2 {
 .member-socials a:hover {
   color: var(--primary);
   transform: translateY(-2px);
+}
+
+.teacher-department-tabs {
+  justify-content: center;
+  gap: 12px;
+  margin: 0 0 52px;
+}
+
+.teacher-department-tabs .nav-link {
+  min-width: 118px;
+  border: 1px solid rgba(var(--primary-rgb), 0.16);
+  border-radius: 999px;
+  color: var(--primary-dark);
+  background: rgba(255, 255, 255, 0.86);
+  font: 800 14px/1 var(--sans);
+  padding: 14px 22px;
+  transition: color 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.teacher-department-tabs .nav-link:hover,
+.teacher-department-tabs .nav-link.active {
+  color: var(--white);
+  background: var(--primary);
+  box-shadow: 0 12px 28px rgba(var(--primary-rgb), 0.18);
+}
+
+.teacher-tab-content {
+  padding-top: 0;
+}
+
+.teacher-team-grid {
+  padding-top: 42px;
 }
 
 .campus-facilities-section {
