@@ -2372,6 +2372,178 @@ h2 {
   color: var(--white);
 }
 
+.management-hero {
+  min-height: 430px;
+}
+
+.management-section {
+  position: relative;
+}
+
+.management-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 26px;
+}
+
+.management-card {
+  min-height: 280px;
+  padding: 34px 28px;
+  border: 1px solid rgba(var(--primary-rgb), 0.13);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 18px 38px rgba(9, 47, 34, 0.09);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.management-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 48px rgba(9, 47, 34, 0.14);
+}
+
+.management-card i {
+  width: 66px;
+  height: 66px;
+  display: inline-grid;
+  place-items: center;
+  margin-bottom: 22px;
+  border-radius: 50%;
+  color: var(--white);
+  background: var(--primary);
+  font-size: 28px;
+}
+
+.management-card.featured {
+  color: var(--white);
+  background:
+    linear-gradient(135deg, rgba(var(--primary-dark-rgb), 0.96), rgba(var(--primary-rgb), 0.9)),
+    url("../assets/pillars-bg.png") center / cover;
+}
+
+.management-card.featured i {
+  color: var(--primary);
+  background: var(--white);
+}
+
+.management-card span {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font: 800 13px/1 var(--sans);
+  text-transform: uppercase;
+}
+
+.management-card.featured span,
+.management-card.featured p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.management-card h3 {
+  margin: 0 0 12px;
+  color: var(--primary-dark);
+  font-size: 27px;
+}
+
+.management-card.featured h3 {
+  color: var(--white);
+}
+
+.management-card p {
+  margin: 0;
+  color: var(--muted);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.governing-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 38px;
+  padding-top: 44px;
+}
+
+.governing-member-card {
+  position: relative;
+  min-height: 210px;
+  padding: 92px 28px 28px;
+  border: 1px solid rgba(var(--primary-rgb), 0.08);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(9, 47, 34, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.governing-member-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 52px rgba(9, 47, 34, 0.13);
+}
+
+.governing-member-card figure {
+  position: absolute;
+  left: 50%;
+  top: -48px;
+  width: 116px;
+  height: 116px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  border-radius: 50%;
+  background: #dff7ff;
+  transform: translateX(-50%);
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(9, 47, 34, 0.12);
+}
+
+.governing-member-card figure::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+}
+
+.governing-member-card img {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.governing-member-card h3 {
+  margin: 0 0 8px;
+  color: var(--ink);
+  font: 700 22px/1.25 var(--sans);
+}
+
+.governing-member-card > span {
+  display: block;
+  color: #8c98a0;
+  font: 800 11px/1 var(--sans);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.member-socials {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.member-socials a {
+  color: #8998a4;
+  font-size: 15px;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.member-socials a:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
 .campus-facilities-section {
   background: rgba(var(--primary-rgb), 0.04);
 }
@@ -2748,7 +2920,9 @@ h2 {
   }
 
   .campus-feature-grid,
-  .campus-stats {
+  .campus-stats,
+  .governing-team-grid,
+  .management-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -3033,8 +3207,18 @@ h2 {
 
   .campus-stats,
   .campus-activity-list,
-  .campus-feature-grid {
+  .campus-feature-grid,
+  .governing-team-grid,
+  .management-grid {
     grid-template-columns: 1fr;
+  }
+
+  .governing-team-grid {
+    gap: 72px;
+  }
+
+  .management-card {
+    min-height: auto;
   }
 
   .campus-info-panel {
