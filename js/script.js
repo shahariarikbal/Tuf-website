@@ -5,6 +5,12 @@ const audioBar = document.querySelector("#audioBar");
 const audioCurrent = document.querySelector("#audioCurrent");
 const audioButtons = document.querySelectorAll(".audio-controls button");
 const preloader = document.querySelector("#preloader");
+const photoLightbox = document.querySelector("#photoLightbox");
+const photoLightboxImage = document.querySelector("#photoLightboxImage");
+const photoLightboxTitle = document.querySelector("#photoLightboxTitle");
+const photoLightboxText = document.querySelector("#photoLightboxText");
+const galleryFilterButtons = document.querySelectorAll("[data-gallery-filter]");
+const galleryCards = document.querySelectorAll("[data-gallery-category]");
 const navSpacer = document.createElement("div");
 
 let audioPercent = 72;
@@ -94,6 +100,42 @@ audioButtons.forEach((button) => {
 document.querySelectorAll("form").forEach((form) => {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
+  });
+});
+
+if (photoLightbox && window.bootstrap) {
+  const lightboxModal = new bootstrap.Modal(photoLightbox);
+
+  document.querySelectorAll(".photo-gallery-card").forEach((card) => {
+    card.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const image = card.querySelector("img");
+      const title = card.querySelector("strong");
+      const caption = card.querySelector("small");
+
+      photoLightboxImage.src = card.getAttribute("href");
+      photoLightboxImage.alt = image ? image.alt : "";
+      photoLightboxTitle.textContent = title ? title.textContent : "Photo Gallery";
+      photoLightboxText.textContent = caption ? caption.textContent : "";
+      lightboxModal.show();
+    });
+  });
+}
+
+galleryFilterButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const filter = button.dataset.galleryFilter;
+
+    galleryFilterButtons.forEach((item) => {
+      item.classList.toggle("is-active", item === button);
+    });
+
+    galleryCards.forEach((card) => {
+      const categories = (card.dataset.galleryCategory || "").split(" ");
+      const shouldShow = filter === "all" || categories.includes(filter);
+      card.classList.toggle("is-hidden", !shouldShow);
+    });
   });
 });
 
