@@ -67,9 +67,46 @@ const campusData = {
   }
 };
 
+function branchSlug(text) {
+  return text
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function getBranchCampus(divisionSlug, campusSlug) {
+  const divisions = window.tufCampusDivisions || [];
+  const division = divisions.find((item) => item.slug === divisionSlug);
+
+  if (!division || !campusSlug) {
+    return null;
+  }
+
+  const campusName = division.campuses.find((name) => branchSlug(name) === campusSlug);
+
+  if (!campusName) {
+    return null;
+  }
+
+  return {
+    type: `${division.name} Division`,
+    title: campusName,
+    intro: `${campusName} is listed under Tanzimul Ummah Foundation's ${division.name} division campuses.`,
+    image: "assets/s1.jpeg",
+    description: `${campusName} serves learners through Quran, Hifz, Madrasah, academic study, supervision, and student care programs. Parents can contact the office for admission guidance, class placement, fees, and campus-specific information.`,
+    stats: [[division.name, "Division"], ["Branch", "Campus Type"], ["Office", "Admission Support"]],
+    info: [["Division", division.name], ["Campus", campusName], ["Programs", "Quran, Hifz, Madrasah, Academic Study"], ["Contact", "01811473335"]],
+    activities: ["Quran learning and recitation practice", "Academic classwork and student monitoring", "Discipline, prayer, and character guidance", "Parent communication and admission support"],
+    features: [["Student Care", "Teachers and staff support student routine, discipline, and learning progress.", "bi-person-check"], ["Academic Guidance", "Campus teams guide class placement, study planning, and parent communication.", "bi-journal-check"], ["Admission Support", "Office staff can help parents with admission steps, documents, and program selection.", "bi-clipboard-data"]]
+  };
+}
+
 const params = new URLSearchParams(window.location.search);
 const campusKey = params.get("campus") || "main";
-const campus = campusData[campusKey] || campusData.main;
+const divisionKey = params.get("division");
+const branchCampus = getBranchCampus(divisionKey, campusKey);
+const campus = branchCampus || campusData[campusKey] || campusData.main;
 
 document.title = `${campus.title} - Tanzimul Ummah Foundation`;
 document.querySelector("#campusType").textContent = campus.type;
