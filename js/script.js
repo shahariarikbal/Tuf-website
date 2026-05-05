@@ -165,59 +165,11 @@ function getCampusUrl(division, campus) {
   return `campus.html?division=${division.slug}&campus=${toSlug(campus)}`;
 }
 
-function renderCampusMegaMenu() {
-  const campusLinks = Array.from(document.querySelectorAll(".mainnav .dropdown-toggle"))
-    .filter((link) => link.textContent.trim() === "Our Campuses");
-
-  campusLinks.forEach((link, menuIndex) => {
-    const menu = link.nextElementSibling;
-
-    if (!menu || !menu.classList.contains("dropdown-menu")) {
-      return;
-    }
-
-    menu.className = "dropdown-menu campus-mega-menu";
-    menu.setAttribute("aria-label", "Campus divisions");
-    menu.innerHTML = `
-      <li class="campus-mega-panel">
-        <div class="campus-division-list" id="campusDivisionMenu${menuIndex}">
-          ${campusDivisions.map((division, divisionIndex) => {
-            const collapseId = `campusDivision${menuIndex}${divisionIndex}`;
-            const isOpen = divisionIndex === 0;
-
-            return `
-              <div class="campus-division-group">
-                <button class="campus-division-toggle ${isOpen ? "" : "collapsed"}" type="button" data-bs-toggle="collapse" data-bs-target="#${collapseId}" aria-expanded="${isOpen}" aria-controls="${collapseId}">
-                  <span>${division.name}</span>
-                  <small>${division.campuses.length} campuses</small>
-                  <i class="bi bi-chevron-down"></i>
-                </button>
-                <div id="${collapseId}" class="collapse ${isOpen ? "show" : ""}" data-bs-parent="#campusDivisionMenu${menuIndex}">
-                  <div class="campus-branch-list">
-                    ${division.campuses.map((campus) => `
-                      <a href="${getDivisionUrl(division)}#${toSlug(campus)}" class="campus-branch-link">
-                        <i class="bi bi-building"></i>
-                        <span>${campus}</span>
-                      </a>
-                    `).join("")}
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join("")}
-        </div>
-      </li>
-    `;
+document.querySelectorAll(".campus-mega-menu").forEach((menu) => {
+  menu.addEventListener("click", (event) => {
+    event.stopPropagation();
   });
-
-  document.querySelectorAll(".campus-mega-menu").forEach((menu) => {
-    menu.addEventListener("click", (event) => {
-      event.stopPropagation();
-    });
-  });
-}
-
-renderCampusMegaMenu();
+});
 
 function renderCampusDivisionPage() {
   const divisionTitle = document.querySelector("#divisionTitle");
