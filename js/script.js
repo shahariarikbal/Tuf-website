@@ -161,13 +161,117 @@ function getDivisionUrl(division) {
   return `campus-division.html?division=${division.slug}`;
 }
 
+const campusCategories = [
+  {
+    name: "Alim Madrasah",
+    slug: "alim",
+    icon: "bi-mortarboard",
+    match: (campus) => campus.toLowerCase().includes("alim madrasah")
+  },
+  {
+    name: "Hifz Madrasah",
+    slug: "hifz",
+    icon: "bi-book-half",
+    match: (campus) => {
+      const name = campus.toLowerCase();
+      return name.includes("hifz madrasah") && !name.includes("pre-hifz") && !name.includes("girls hifz") && !name.includes("girls' hifz") && !name.includes("girl's hifz");
+    }
+  },
+  {
+    name: "Pre-Hifz Madrasah",
+    slug: "pre-hifz",
+    icon: "bi-journal-bookmark",
+    match: (campus) => campus.toLowerCase().includes("pre-hifz")
+  },
+  {
+    name: "Girls' Madrasah",
+    slug: "girls",
+    icon: "bi-person-hearts",
+    match: (campus) => {
+      const name = campus.toLowerCase();
+      return (name.includes("girls madrasah") || name.includes("girls' madrasah") || name.includes("girl's madrasah") || name.includes("girls section")) && !name.includes("hifz");
+    }
+  },
+  {
+    name: "Girls' Hifz Madrasah",
+    slug: "girls-hifz",
+    icon: "bi-bookmark-heart",
+    match: (campus) => {
+      const name = campus.toLowerCase();
+      return name.includes("girls hifz madrasah") || name.includes("girls' hifz madrasah") || name.includes("girl's hifz madrasah");
+    }
+  },
+  {
+    name: "Ibtedaie Madrasah",
+    slug: "ibtedaie",
+    icon: "bi-pencil-square",
+    match: (campus) => campus.toLowerCase().includes("ibtedaie")
+  },
+  {
+    name: "Madrasah",
+    slug: "madrasah",
+    icon: "bi-building",
+    match: (campus) => campus.toLowerCase().includes("madrasah")
+  }
+];
+
+window.tufCampusCategories = campusCategories;
+
+function getCampusCategory(campus) {
+  const ibtedaieCategory = campusCategories.find((category) => category.slug === "ibtedaie");
+
+  if (ibtedaieCategory && ibtedaieCategory.match(campus)) {
+    return ibtedaieCategory;
+  }
+
+  return campusCategories.find((category) => category.match(campus)) || campusCategories[campusCategories.length - 1];
+}
+
+function getCategoryUrl(category, division) {
+  const divisionParam = division ? `division=${division.slug}&` : "";
+  return `campus-division.html?${divisionParam}category=${category.slug}`;
+}
+
 function getCampusUrl(division, campus) {
   return `campus.html?division=${division.slug}&campus=${toSlug(campus)}`;
+}
+
+function getDivisionCategoryCampuses(division, category) {
+  return division.campuses.filter((campus) => getCampusCategory(campus).slug === category.slug);
+}
+
+function getCategorizedCampuses(categorySlug, divisionSlug) {
+  const category = campusCategories.find((item) => item.slug === categorySlug) || campusCategories[0];
+  const divisions = divisionSlug
+    ? campusDivisions.filter((division) => division.slug === divisionSlug)
+    : campusDivisions;
+  const campuses = divisions.flatMap((division) => getDivisionCategoryCampuses(division, category)
+    .map((campus) => ({ division, campus })));
+
+  return { category, campuses };
 }
 
 document.querySelectorAll(".campus-mega-menu").forEach((menu) => {
   menu.addEventListener("click", (event) => {
     event.stopPropagation();
+  });
+});
+
+document.querySelectorAll(".campus-program-link").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    const item = link.closest(".campus-program-item");
+
+    if (!item) {
+      return;
+    }
+
+    event.preventDefault();
+    item.parentElement.querySelectorAll(".campus-program-item.is-open").forEach((openItem) => {
+      if (openItem !== item) {
+        openItem.classList.remove("is-open");
+      }
+    });
+    item.classList.toggle("is-open");
   });
 });
 
@@ -183,8 +287,42 @@ function renderCampusDivisionPage() {
   }
 
   const params = new URLSearchParams(window.location.search);
+  const activeCategorySlug = params.get("category");
   const activeSlug = params.get("division") || campusDivisions[0].slug;
   const activeDivision = campusDivisions.find((division) => division.slug === activeSlug) || campusDivisions[0];
+
+  if (activeCategorySlug) {
+    const { category, campuses } = getCategorizedCampuses(activeCategorySlug, params.get("division"));
+    const scopeLabel = params.get("division") ? `${activeDivision.name} ${category.name}` : category.name;
+
+    document.title = `${scopeLabel} Campuses - Tanzimul Ummah Foundation`;
+    divisionTitle.textContent = scopeLabel;
+    divisionIntro.textContent = `Explore all ${scopeLabel} campuses under Tanzimul Ummah Foundation.`;
+
+    if (divisionCount) {
+      divisionCount.textContent = `${campuses.length} Campuses`;
+    }
+
+    if (divisionTabs) {
+      divisionTabs.innerHTML = campusCategories.map((item) => `
+        <a class="${item.slug === category.slug ? "is-active" : ""}" href="${getCategoryUrl(item, activeDivision)}">
+          ${item.name}
+        </a>
+      `).join("");
+    }
+
+    divisionGrid.innerHTML = campuses.map(({ division, campus }, index) => `
+      <article class="division-campus-card" id="${toSlug(campus)}">
+        <span>${String(index + 1).padStart(2, "0")}</span>
+        <small class="campus-card-meta">${division.name} Division</small>
+        <h2>${campus}</h2>
+        <p>${category.name} campus for Quran, Madrasah, academic study, supervision, and student care programs.</p>
+        <a href="${getCampusUrl(division, campus)}">View Details</a>
+      </article>
+    `).join("");
+
+    return;
+  }
 
   document.title = `${activeDivision.name} Campuses - Tanzimul Ummah Foundation`;
   divisionTitle.textContent = `${activeDivision.name} Campuses`;
@@ -205,9 +343,10 @@ function renderCampusDivisionPage() {
   divisionGrid.innerHTML = activeDivision.campuses.map((campus, index) => `
     <article class="division-campus-card" id="${toSlug(campus)}">
       <span>${String(index + 1).padStart(2, "0")}</span>
+      <small class="campus-card-meta">${getCampusCategory(campus).name}</small>
       <h2>${campus}</h2>
       <p>${activeDivision.name} division campus for Quran, Hifz, Madrasah, academic study, and student care programs.</p>
-      <a href="${getCampusUrl(activeDivision, campus)}">Contact Office</a>
+      <a href="${getCampusUrl(activeDivision, campus)}">View Details</a>
     </article>
   `).join("");
 }

@@ -468,6 +468,67 @@ img {
   transition: height 0.22s ease;
 }
 
+.campus-program-list {
+  display: grid;
+  gap: 6px;
+  margin: 0 14px;
+  padding: 12px 0 14px;
+  border-top: 1px solid #e4eee8;
+}
+
+.campus-program-item {
+  position: relative;
+  border: 1px solid #edf2ee;
+  border-radius: 7px;
+  background: var(--white);
+}
+
+.campus-program-link {
+  display: grid;
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+  gap: 9px;
+  min-height: 44px;
+  align-items: center;
+  padding: 10px 11px;
+  color: var(--ink);
+  font: 800 13px/1.25 var(--sans);
+  transition: color 0.25s ease, background-color 0.25s ease;
+}
+
+.campus-program-link i {
+  display: inline-flex;
+  width: 26px;
+  height: 26px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: var(--primary);
+  background: var(--soft);
+  font-size: 13px;
+}
+
+.campus-program-link small {
+  color: var(--muted);
+  font: 800 12px/1 var(--sans);
+}
+
+.campus-program-link:hover,
+.campus-program-link:focus {
+  color: var(--primary);
+  background: #f4faf6;
+}
+
+.campus-hover-branches {
+  display: none;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  padding: 0 10px 10px;
+}
+
+.campus-program-item.is-open .campus-hover-branches {
+  display: grid;
+}
+
 .campus-branch-link {
   display: grid;
   grid-template-columns: 18px minmax(0, 1fr);
@@ -583,6 +644,15 @@ img {
   color: var(--primary);
   background: var(--soft);
   font: 800 13px/1 var(--sans);
+}
+
+.division-campus-card .campus-card-meta {
+  display: block;
+  margin: -4px 0 10px;
+  color: var(--muted);
+  font: 800 12px/1.2 var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 .division-campus-card h2 {
@@ -4423,6 +4493,10 @@ h2 {
 
   .campus-division-list {
     max-height: 54vh;
+  }
+
+  .campus-hover-branches {
+    grid-template-columns: 1fr;
   }
 
   .search-box {
